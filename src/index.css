@@ -1,0 +1,826 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+
+
+
+/*1*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/*2*/
+body, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+/* CSS để định vị các nút điều hướng */
+.slick-prev, .slick-next {
+    position: absolute; /* Đặt chúng ở vị trí tuyệt đối */
+    top: 20px; /* Điều chỉnh khoảng cách từ phía trên */
+    z-index: 10; /* Đặt độ ưu tiên để nằm trên hình ảnh */
+}
+
+.slick-prev {
+    left: 10px; /* Đặt nút trước ở bên trái */
+}
+
+.slick-next {
+    right: 10px; /* Đặt nút tiếp theo ở bên phải */
+}
+
+
+/*3*/
+.job-list-section {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.job-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 20px;
+}
+
+.job-card {
+  display: flex;
+  align-items: flex-start;
+  padding: 10px;
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+  margin: 5px 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s;
+}
+
+.job-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.company-logo img {
+  border-radius: 50%;
+}
+
+.partner-label {
+  font-weight: bold;
+  color: #333;
+}
+
+.job-title {
+  font-size: 18px;
+  margin: 5px 0;
+  color: #555;
+}
+
+.salary {
+  color: #28a745;
+}
+
+.company {
+  color: #007bff;
+}
+
+.location {
+  color: #6c757d;
+}
+
+
+.company-logo img {
+  width: 50px;
+  height: auto;
+}
+
+/* Thêm hiệu ứng hover cho card */
+.job-card:hover {
+  transform: translateY(-5px);
+  transition: transform 0.2s;
+}
+
+.see-more {
+  text-align: center;
+  margin-top: 1px; 
+}
+
+
+
+
+
+
+
+/*header*/
+@media (max-width: 768px) {
+  /* Ẩn các phần không cần thiết trên mobile */
+  .top-links,
+  .notification-icon,
+  .management-link,
+  .login-register,
+  .post-job-button {
+    display: none;
+  }
+
+  /* Điều chỉnh logo */
+  .logo-search img {
+    width: 90px; /* Thay đổi kích thước logo nhỏ hơn */
+  }
+
+  /* Căn chỉnh thanh tìm kiếm và icon danh mục */
+  .logo-search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; /* Chiếm toàn bộ chiều rộng */
+  }  
+
+  /* Tăng chiều rộng thanh tìm kiếm */
+  .logo-search input {
+    flex-grow: 1; /* Đảm bảo input tìm kiếm chiếm toàn bộ không gian */
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+
+  .search-button {
+    background-color: #f5c518; /* Màu vàng cho nút tìm kiếm */
+    color: white;
+    padding: 10px 20px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .category-button {
+    background-color: transparent; /* Màu nền trong suốt cho danh mục */
+    border: 2px solid #3b82f6; /* Viền xanh */
+    padding: 10px 20px;
+    color: black;
+    margin-right: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  /* Hiển thị icon danh mục bên phải thanh tìm kiếm */
+  .hamburger-menu {
+    display: block;
+    font-size: 24px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+
+  /* Khi nhấn vào biểu tượng danh mục, hiển thị dropdown */
+  .mobile-menu-dropdown {
+    display: none;
+    position: absolute;
+    top: 60px; /* Đặt dưới header */
+    right: 0;
+    background-color: white;
+    width: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+
+  .mobile-menu-dropdown.show {
+    display: block; /* Hiển thị danh mục khi nhấn */
+  }
+
+  /* Căn chỉnh danh mục dropdown */
+  .mobile-menu-dropdown ul {
+    list-style: none;
+    padding: 10px;
+  }
+
+  .mobile-menu-dropdown ul li {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+  }
+
+  .mobile-menu-dropdown ul li a {
+    text-decoration: none;
+    color: #333;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* home */
+
+/* việc làm tuyển gấp */
+.job-card {
+  display: flex;
+  align-items: flex-start;
+  padding: 15px;
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+  margin: 10px 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.company-logo {
+  flex-shrink: 0;
+  margin-right: 20px;
+}
+
+.job-info {
+  flex-grow: 1;
+}
+
+.partner-label {
+  font-weight: bold;
+  color: #333;
+  font-size: 16px;
+}
+
+.job-title {
+  font-size: 18px;
+  margin: 5px 0;
+  color: #555;
+}
+
+.salary, .company, .location {
+  color: #28a745;
+  font-size: 14px;
+  flex-grow: 1;
+  white-space: nowrap;
+}
+
+/* Styles for responsive design */
+@media (max-width: 768px) {
+  .job-card {
+    flex-direction: column; /* stack items vertically */
+    align-items: flex-start; /* align items to the start */
+  }
+
+  .company-logo {
+    margin-bottom: 10px; /* add space below logo when stacked */
+  }
+  
+  .job-info {
+    white-space: nowrap; /* take full width */
+  }
+
+  .header {
+    padding: 0 15px; /* add padding to header for mobile view */
+  }
+
+  h2 {
+    font-size: 20px; /* adjust heading size */
+    margin: 10px 0; /* reduce margin for mobile */
+  }
+  
+  /* Style for the button */
+  .see-more a {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  /* Make Job Grid responsive */
+  .job-grid {
+    display: flex;
+    flex-direction: column; /* stack job cards */
+  }
+
+  
+}
+
+
+
+
+
+
+/* từ đối tác việc làm tốt */
+@media only screen and (max-width: 768px) {
+  .job-list-section h2 {
+      font-size: 18px; /* Giảm kích thước chữ cho tiêu đề */
+      text-align: center;
+      color: black; /* Màu chữ đen cho tiêu đề */
+  }
+
+  .job-list-section .options {
+      display: flex;
+      flex-direction: column; /* Căn chỉnh theo chiều dọc */
+      align-items: flex-start; /* Căn chỉnh sang bên trái */
+      margin: 0; /* Đặt margin về 0 để tránh bị rớt chữ */
+      padding: 0; /* Đặt padding về 0 */
+  }
+
+  .options > div {
+      width: 100%; /* Đảm bảo chiều rộng 100% */
+      display: flex; /* Sử dụng flexbox */
+      justify-content: space-between; /* Phân bổ không gian */
+      font-size: 14px; /* Giảm kích thước chữ cho các phần này */
+  }
+
+  .options span {
+      color: #c7c7c7; /* Màu chữ cho các phần không quan trọng */
+  }
+
+  .options span:first-child {
+      font-weight: bold; /* Đối tác nổi bật hơn */
+      text-transform: uppercase; /* Chữ hoa */
+      color: black; /* Màu chữ đen cho phần Đối tác */
+  }
+
+  .options span:nth-child(2), /* Việc làm xác thực */
+  .options span:nth-child(3) { /* Phản hồi trong 7 ngày */
+      color: black; /* Màu chữ đen cho các phần này */
+  }
+
+  .options span:first-child {
+      font-weight: bold; /* Đối tác nổi bật hơn */
+      text-transform: uppercase; /* Chữ hoa */
+      color: black; /* Màu chữ đen cho phần Đối tác */
+  }
+
+  .options span:nth-child(2), /* Việc làm xác thực */
+  .options span:nth-child(3) { /* Phản hồi trong 7 ngày */
+      color: black; /* Màu chữ đen cho các phần này */
+  }
+
+  .see-more a {
+      font-size: 16px; /* Giảm kích thước chữ cho nút xem thêm */
+      padding: 8px 12px; /* Giảm padding cho nút */
+  }
+
+  .job-grid {
+      display: grid; /* Sử dụng grid cho các JobCard */
+      grid-template-columns: 1fr; /* Cột đơn trên mobile */
+      gap: 10px; /* Khoảng cách giữa các JobCard */
+  }
+}
+
+
+
+
+
+/* Dành cho nhà tuuyển dụng */
+@media only screen and (max-width: 768px) {
+  .employer-cards {
+      display: flex; /* Sử dụng flexbox */
+      flex-direction: column; /* Chuyển hướng flex thành cột */
+      align-items: center; /* Căn giữa các khung */
+  }
+
+  .employer-cards .card {
+      width: 100%; /* Đặt chiều rộng của khung là 100% */
+      margin-bottom: 10px; /* Thêm khoảng cách dưới mỗi khung */
+      padding: 10px; /* Tăng padding cho các khung */
+      border-radius: 5px; /* Giữ nguyên bo góc */
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Thêm bóng cho các khung */
+  }
+
+  .card-title, .card-status {
+      font-size: 16px; /* Điều chỉnh kích thước chữ cho tiêu đề và trạng thái */
+  }
+
+  h2 {
+      font-size: 18px; /* Điều chỉnh kích thước chữ cho tiêu đề */
+  }
+
+  span {
+      font-size: 14px; /* Điều chỉnh kích thước chữ cho mô tả */
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* việc làm gần bạn đi làm ngay */
+@media only screen and (max-width: 768px) {
+  /* Điều chỉnh kích thước tiêu đề */
+  h2 {
+      font-size: 18px; /* Kích thước chữ cho tiêu đề */
+  }
+
+  /* Điều chỉnh khoảng cách và kích thước của thanh tìm kiếm */
+  input[type="text"] {
+      width: 90%; /* Đặt chiều rộng là 100% */
+      margin-bottom: 1px; /* Thêm khoảng cách dưới input */
+  }
+
+  /* Điều chỉnh nút tìm kiếm */
+  button {
+      width: 72%; /* Đặt chiều rộng là 100% */
+      padding: 12px; /* Tăng kích thước padding để đảm bảo chữ không bị rớt */
+      font-size: 12px; /* Điều chỉnh kích thước chữ cho nút */
+  }
+  
+  /* Hiệu ứng hover cho nút tìm kiếm */
+  button:hover {
+    background-color: #ffcc00; /* Màu nền khi hover */
+    transform: scale(1.05); /* Phóng to nút một chút khi hover */
+  }
+
+  /* Thay đổi cách hiển thị thanh tìm kiếm và nút */
+  .search-container {
+      display: flex; /* Sử dụng flexbox */
+      flex-direction: column; /* Chuyển hướng thành cột */
+      align-items: center; /* Căn giữa các phần tử */
+  }
+}
+
+
+
+
+
+
+
+/* giới thiệu */
+.container {
+  padding: 10px;
+  text-align: center;
+  max-width: 1024px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title-section {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title-section h2 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin-right: 10px;
+}
+
+.title-section img {
+  height: 40px;
+  vertical-align: middle;
+}
+
+.description {
+  font-size: 18px;
+  color: #333;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.stats-section {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.stat-item {
+  flex: 1;
+  padding: 10px;
+  margin: 0 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-item img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.stat-item h3 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #F4A12D;
+  margin-top: 10px;
+}
+
+.stat-item p {
+  font-size: 10px;
+  color: #333;
+  font-weight: bold;
+  margin-top: 1px;
+}
+
+/* CSS dành riêng cho mobile */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .title-section {
+    flex-direction: row; /* Đặt các phần tử nằm ngang */
+    justify-content: center; /* Căn giữa phần tử */
+    text-align: center;
+  }
+
+  .title-section h2 {
+    font-size: 16px; /* Thu nhỏ font chữ cho tiêu đề */
+    margin-right: 10px; /* Khoảng cách giữa chữ và hình */
+  }
+
+  .title-section img {
+    height: 30px; /* Thu nhỏ logo */
+    margin-top: 0; /* Bỏ khoảng cách giữa chữ và hình */
+  }
+
+  .description {
+    font-size: 14px; /* Giảm font chữ mô tả */
+    margin-bottom: 15px;
+  }
+
+  .stats-section {
+    flex-direction: row; /* Đặt các item nằm ngang */
+    justify-content: space-between; /* Điều chỉnh khoảng cách giữa các logo */
+    gap: 10px;
+    margin: 0 10px; /* Đảm bảo không bị tràn khỏi màn hình nhỏ */
+  }
+
+  .stat-item {
+    margin: 0; /* Giảm khoảng cách giữa các item */
+    padding: 5px;
+  }
+
+  .stat-item img {
+    width: 50px; /* Thu nhỏ logo */
+    height: 50px;
+  }
+
+  .stat-item h3 {
+    font-size: 14px; /* Thu nhỏ font chữ */
+    margin-top: 5px;
+  }
+
+  .stat-item p {
+    font-size: 10px; /* Tăng kích cỡ chữ mô tả */
+    margin-top: 3px; /* Giảm khoảng cách giữa tiêu đề và mô tả */
+  }
+}
+
+
+
+
+
+
+
+
+/* việc làm mới nhất */
+@media (max-width: 768px) {
+  .job-list-section {
+    padding: 10px;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .job-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  /* Giới hạn chiều dài chữ cho các job card */
+  .job-card {
+    white-space: nowrap;   /* Ngăn nội dung xuống dòng */
+    overflow: hidden;      /* Ẩn phần nội dung vượt quá khung */
+    text-overflow: ellipsis; /* Hiển thị dấu "..." nếu nội dung quá dài */
+    max-width: 100%;       /* Giới hạn chiều rộng */
+  }
+
+  /* Chỉnh lại chữ dài trong title */
+  .job-card h2 {
+    font-size: 16px;  /* Điều chỉnh kích thước chữ nhỏ hơn */
+  }
+
+  /* Button xem thêm */
+  .see-more {
+    text-align: center;
+    margin-top: 10px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* CSS cho footer */
+.footer {
+  background-color: #f5f5f5;
+  color: #333;
+  padding: 20px;
+  display: flex;
+  flex-direction: column; /* Đặt chiều hướng flex là cột */
+  align-items: center; /* Căn giữa các phần tử */
+}
+
+/* Các quy tắc CSS chỉ áp dụng cho màn hình nhỏ hơn 640px */
+@media (max-width: 640px) {
+  .footer {
+    text-align: center; /* Căn giữa toàn bộ nội dung trong footer */
+    padding: 15px; /* Thay đổi padding cho footer trên mobile */
+  }
+
+  .footer .container {
+    flex-direction: column; /* Đặt chiều hướng flex là cột */
+    align-items: center; /* Căn giữa các phần tử con */
+    gap: 20px; /* Khoảng cách giữa các phần tử */
+  }
+
+  /* Căn giữa các mục trong phần "Liên Kết" và "Chứng nhận" */
+  .footer .self-start {
+    width: 100%; /* Đảm bảo mỗi phần chiếm toàn bộ chiều rộng */
+    display: flex; /* Sử dụng flexbox */
+    flex-direction: column; /* Đặt chiều hướng flex là cột */
+    align-items: center; /* Căn giữa các phần tử */
+    text-align: center; /* Căn giữa văn bản */
+  }
+
+  /* Điều chỉnh khoảng cách giữa mã QR và các logo */
+  .footer .self-start img {
+    margin: 1px 0; /* Giảm khoảng cách giữa các hình ảnh */
+  }
+
+  /* Điều chỉnh khoảng cách giữa liên kết và chứng nhận */
+  .footer .self-start:nth-child(3) {
+    margin-top: 3px; /* Khoảng cách giữa phần "Liên Kết" và "Chứng nhận" */
+  }
+
+  /* Kích thước chữ cho các liên kết */
+  .footer a {
+    font-size: 0.9rem; /* Kích thước chữ cho các liên kết */
+    margin-bottom: 4px; /* Thêm khoảng cách giữa các liên kết */
+    color: #007bff; /* Màu sắc cho các liên kết */
+    text-decoration: underline; /* Gạch chân liên kết */
+  }
+
+  /* Kích thước chữ cho phần "Chứng nhận" */
+  .footer h4:nth-of-type(3) {
+    font-size: 1rem; /* Kích thước chữ cho tiêu đề "Chứng nhận" */
+    margin-top: 10px; /* Giảm khoảng cách trên giữa tiêu đề "Chứng nhận" */
+  }
+
+  .footer img {
+    max-width: 90%; /* Giảm kích thước hình ảnh cho phù hợp với màn hình nhỏ */
+    height: auto; /* Giữ tỷ lệ hình ảnh */
+    margin: 10px auto; /* Căn giữa hình ảnh và tạo khoảng cách */
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*100*/
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
+}
